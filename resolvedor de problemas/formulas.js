@@ -88,16 +88,16 @@ class Formulas {
                         this._order = Number(aux[i+aux2]) * Number(aux[i+aux3]);
                         console.log(aux)
                         aux.splice(i, 1);
-                        aux.splice(aux2-1, 1);
-                        aux.splice(aux3-2, 1, this._order);
+                        aux.splice(i + aux2-1, 1);
+                        aux.splice(i + aux3-2, 1, this._order);
                         console.log(aux)
             }
             else if(aux[i] === "/"){
                     this._order = Number(aux[i+aux2]) / Number(aux[i+aux3]);
                     console.log(aux)
                     aux.splice(i, 1);
-                    aux.splice(aux2-1, 1);
-                    aux.splice(aux3-2, 1, this._order);
+                    aux.splice(i + aux2-1, 1);
+                    aux.splice(i + aux3-2, 1, this._order);
                     console.log(aux)
             }
         }
