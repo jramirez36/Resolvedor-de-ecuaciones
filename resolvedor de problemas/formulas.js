@@ -65,102 +65,40 @@ class Formulas {
     resolver()
     {
         let aux = [];
-        let aux2;
-        let aux3;
-        for(let i = 0; i < this._order.length; i++)
-        {
+        let aux2 = 1;
+        let aux3 = 2;
+        for(let i=0; i < this._order.length; i++){
             aux[i] = this._order.charAt(i);
         }
-        //resuelve las multiplicaciones y divisiones
-        for(let i = aux.length-1; i >= 0; i--)
+        for(let i=aux.length - 1; i >= 0; i--)
         {
-            if(aux[i] == "*")
+            if(aux[i] === "+")
             {
-                    if(aux[i+1] == "+")
-                    {
-                        //reorganizo el signo atras
-                        aux2 = aux[i+1];
-                        aux3 = aux[i];
-                        aux[i] = aux2;
-                        aux[i+1] = aux3;
-                        //resuelvo la multiplicación
-                        // comenzamos con i+3 y i+4 para no tocar el numero de i+2 que es el numero del signo que movimos atras
-                        this._order = Number(aux[i+3]) * Number(aux[i+4]);
-                        console.log(aux)
-                        aux.splice(i+1, 1);
-                        aux.splice(i+1, 1);
-                        aux.splice(i+2, 1, this._order);
-                        console.log(aux)
-                    }
-                    else if(aux[i+1] == "-")
-                    {
-                        //reorganizo el signo atras
-                        aux2 = aux[i+1];
-                        aux3 = aux[i];
-                        aux[i] = aux2;
-                        aux[i+1] = aux3;
-                        //resuelvo la multiplicación
-                        // comenzamos con i+3 y i+4 para no tocar el numero de i+2 que es el numero del signo que movimos atras
-                        this._order = Number(aux[i+3]) * Number(aux[i+4]);
-                        console.log(aux)
-                        aux.splice(i+1, 1);
-                        aux.splice(i+1, 1);
-                        aux.splice(i+2, 1, this._order);
-                        console.log(aux)
-                    }
-                    else
-                    {
-                        this._order = Number(aux[i+1]) * Number(aux[i+2]);
-                        console.log(aux)
-                        aux.splice(i, 1);
-                        aux.splice(i, 1);
-                        aux.splice(i, 1, this._order);
-                        console.log(aux)
-                    }
+                aux2 = aux2 + 2;
+                console.log(aux2)
+                aux3 = aux3 + 2;
             }
-            else if(aux[i] == "/")
+            else if(aux[i] === "-")
             {
-                if(aux[i+1] == "+")
-                {
-                    //reorganizo el signo atras
-                    aux2 = aux[i+1];
-                    aux3 = aux[i];
-                    aux[i] = aux2;
-                    aux[i+1] = aux3;
-                    //resuelvo la multiplicación
-                    // comenzamos con i+3 y i+4 para no tocar el numero de i+2 que es el numero del signo que movimos atras
-                    tthis._order = Number(aux[i+3]) / Number(aux[i+4]);
-                    console.log(aux)
-                    aux.splice(i+1, 1);
-                    aux.splice(i+1, 1);
-                    aux.splice(i+2, 1, this._order);
-                    console.log(aux)
-                }
-                else if(aux[i+1] == "-")
-                {
-                    //reorganizo el signo atras
-                    aux2 = aux[i+1];
-                    aux3 = aux[i];
-                    aux[i] = aux2;
-                    aux[i+1] = aux3;
-                    //resuelvo la multiplicación
-                    // comenzamos con i+3 y i+4 para no tocar el numero de i+2 que es el numero del signo que movimos atras
-                    this._order = Number(aux[i+3]) / Number(aux[i+4]);
-                    console.log(aux)
-                    aux.splice(i+1, 1);
-                    aux.splice(i+1, 1);
-                    aux.splice(i+2, 1, this._order);
-                    console.log(aux)
-                }
-                else
-                {
-                    this._order = Number(aux[i+1]) / Number(aux[i+2]);
+                aux2 = aux2 + 2;
+                console.log(aux2)
+                aux3 = aux3 + 2;
+            }
+            else if(aux[i] === "*"){
+                        this._order = Number(aux[i+aux2]) * Number(aux[i+aux3]);
+                        console.log(aux)
+                        aux.splice(i, 1);
+                        aux.splice(aux2-1, 1);
+                        aux.splice(aux3-2, 1, this._order);
+                        console.log(aux)
+            }
+            else if(aux[i] === "/"){
+                    this._order = Number(aux[i+aux2]) / Number(aux[i+aux3]);
                     console.log(aux)
                     aux.splice(i, 1);
-                    aux.splice(i, 1);
-                    aux.splice(i, 1, this._order);
+                    aux.splice(aux2-1, 1);
+                    aux.splice(aux3-2, 1, this._order);
                     console.log(aux)
-                }
             }
         }
         console.log(aux.length-1)
